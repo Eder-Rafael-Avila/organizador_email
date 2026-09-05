@@ -1,0 +1,20 @@
+.comp-emailItem {
+    width: 90%;
+    height: auto;
+    margin: 1rem;
+    border-bottom: 1px solid #ddd;
+
+    h3, strong {
+        font-size: 1.9rem;
+        margin: 2rem 0rem .5rem 0rem;
+    }
+
+    span {
+        font-size: 1.4rem;
+    }
+
+    p { 
+        font-size: 1.6rem;
+        margin-top: 2rem;
+    }        
+}
