@@ -1,0 +1,36 @@
+.comp-emailList {
+    background-color: var(--corLavender);
+    scrollbar-color: var(--corMagenta) transparent;
+    scrollbar-width: thin;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+
+    width: 40rem;
+    height: calc(100vh - 65px);
+    overflow-y: auto;
+
+    border-right: 2px solid var(--corMagentaEscuro);
+    padding: 1.2rem;
+    border-radius: .5rem;
+    box-shadow: inset -4px 0 12px rgba(52, 17, 63, 0.08);
+
+    p, i {
+        font-size: 1.8rem;
+    }
+}
+
+.comp-emailList::-webkit-scrollbar {
+    width: 6px;
+}
+
+.comp-emailList::-webkit-scrollbar-thumb {
+    background-color: var(--corMagenta);
+    border-radius: 999px;
+}
+
+.comp-emailList::-webkit-scrollbar-track {
+    background-color: transparent;
+}

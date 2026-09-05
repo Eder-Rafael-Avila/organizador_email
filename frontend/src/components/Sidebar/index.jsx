@@ -1,11 +1,8 @@
 import './index.scss'
-import { useState } from 'react'
 
 import SidebarItem from '../SidebarItem'
 
-export default function Sidebar() {
-
-    const [pastaSelecionada, setPastaSelecionada] = useState("Entrada");
+export default function Sidebar({ pastaSelecionada, aoSelecionarPasta }) {
 
     const pastas = [
         {
@@ -42,7 +39,7 @@ export default function Sidebar() {
                             nome={pasta.nome}
                             icone={pasta.icone}
                             quantidade={pasta.quantidade}
-                            aoClicar={() => setPastaSelecionada(pasta.nome)}
+                            aoClicar={() => aoSelecionarPasta(pasta.nome)}
                             selecionada={pastaSelecionada === pasta.nome}
                         />
                     ))

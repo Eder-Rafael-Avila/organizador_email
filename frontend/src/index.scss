@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+:root {
+  --corClara: #E7E6F7;
+  --corRosaClaro: #E3D0D8;
+  --corMagenta: #AEA3B0;
+  --corMagentaEscuro: #827081;
+  --corLavender: #C6D2ED;
+  --corDarkAmetist: #34113F;
+}
+
 * {
   box-sizing: border-box;
   font-size: 10px;
@@ -20,6 +29,9 @@ button {
   cursor: pointer;
 }
 
-h2 {
+h2, h1 {
+  color: var(--corDarkAmetist);
   font-size: 2rem;
 }
+
+/////////////////////////////////////////////////////

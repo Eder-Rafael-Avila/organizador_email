@@ -1,10 +1,30 @@
 .comp-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 6.5rem;
+    background: linear-gradient(110deg, var(--corDarkAmetist), var(--corMagentaEscuro));
+
     width: 100%;
-    padding: 20px;
-    border-bottom: 1px solid #ddd;
+    padding: 2.5rem 2.5rem;
+    border-bottom: 3px solid var(--corMagenta);
+    box-shadow: 0 4px 14px rgba(52, 17, 63, 0.2);
 
     h1 {
+        color: var(--corClara);
         margin: 0;
-        font-size: 24px;
+        font-size: 2.4rem;
+        font-weight: 700;
+        letter-spacing: .02em;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        right: 2.5rem;
+        width: 4rem;
+        height: .4rem;
+        border-radius: 999px;
+        background-color: var(--corLavender);
     }
 }

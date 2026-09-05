@@ -6,12 +6,18 @@
     padding: 10px;
     border: none;
     background: transparent;
+    color: var(--corDarkAmetist);
     text-align: left;
     border-radius: .6rem;
     font-size: 1.6rem;
+    box-shadow: 0 2px 5px rgba(52, 17, 63, 0.16);
+    margin-bottom: 1rem;
+    transition: background-color .2s ease, color .2s ease, transform .2s ease;
 
     &:hover {
-        background: #eee;
+        background: var(--corMagenta);
+        color: var(--corDarkAmetist);
+        transform: translateX(2px);
     }
 
     i {
@@ -28,11 +34,13 @@
 }
 
 .selecionada {
-    background-color: #8D9797;
+    background-color: var(--corMagentaEscuro);
+    color: var(--corClara);
     font-weight: bold;
 
     &:hover {
-        background-color: #8D9797;
+        background-color: var(--corMagentaEscuro);
+        color: var(--corClara);
         font-weight: bold;
     }
 }

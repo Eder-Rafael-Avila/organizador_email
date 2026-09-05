@@ -1,0 +1,29 @@
+.comp-emailViewer {
+    display: flex;
+
+    background-color: var(--corLavender);
+
+    flex: 1;
+    padding: 1rem;
+    border-radius: .5rem;
+
+    p, i {
+        font-size: 1.6rem;
+    }
+
+    span {
+        font-size: 2rem;
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+
+        background-color: white;
+
+        padding: 0 1rem;
+        border-radius: 1rem;
+    }
+}

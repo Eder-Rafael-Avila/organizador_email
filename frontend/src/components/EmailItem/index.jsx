@@ -1,12 +1,19 @@
-import './index.scss'
+import "./index.scss";
 
-export default function EmailItem({ remetente, assunto, preview }) {
-
+export default function EmailItem({ email, aoClicar, selecionado }) {
     return (
-        <div className='comp-emailItem'>
-            <h3><strong>{remetente}</strong></h3>
-            <span>{assunto}</span>
-            <p>{preview}</p>
-        </div>
+        <article
+            className={`comp-emailItem
+                            ${selecionado ? "selecionado" : ""} 
+                            ${!email.lido ? "nao-lido" : ""}`}
+            onClick={aoClicar}
+        >
+            <h3>
+                {email.remetente}
+                <span>{email.lido ? "Lido" : "Não Lido"}</span>
+            </h3>
+            <span>{email.assunto}</span>
+            <p>{email.preview}</p>
+        </article>
     );
 }
