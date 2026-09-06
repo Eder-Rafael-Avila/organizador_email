@@ -1,8 +1,15 @@
 import './index.scss'
 
 import EmailItem from '../EmailItem'
+import AssistAiSection from '../AssistAISection'
 
-export default function EmailList({ aoSelecionarEmail, emails, emailSelecionado, aoMarcarComoLido }) {
+export default function EmailList({ aoSelecionarEmail, emails, emailSelecionado, aoMarcarComoLido, pastaSelecionada }) {
+
+    if (pastaSelecionada === "Assist AI") {
+        return (
+            <AssistAiSection />
+        )
+    }
 
     return (
         <section className='comp-emailList'>

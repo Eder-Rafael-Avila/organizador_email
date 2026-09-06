@@ -5,17 +5,28 @@ export default function EmailViewer({ email }) {
     if (!email) {
         return (
             <section className='comp-emailViewer'>
-                <p>selecione um e-mail para visualizar</p>
+                <div id='nenhumEmail'>
+                    <p id='selectEmail'>selecione um e-mail para visualizar</p>
+                </div>
             </section>
         );
     }
 
     return (
         <section className='comp-emailViewer'>
-            <div>
-                <p><i>{email.remetente}</i></p>
+            <div className='email-header'>
                 <h2>{email.assunto}</h2>
-                <span>{email.preview}</span>
+            </div>
+
+            <div className='email-remetente'>
+                <h3>{email.remetente}</h3>
+                <p>{email.data}</p>
+            </div>
+
+            <div className='email-content'>
+                <p>
+                    {email.conteudo}
+                </p>
             </div>
         </section>
     );

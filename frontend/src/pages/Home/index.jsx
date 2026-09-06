@@ -76,11 +76,13 @@ export default function Home() {
 
             <main>
               <div className='email-layout'>
+
                 <EmailList 
                   aoSelecionarEmail={setEmailSelecionado}
                   emails={emailsFiltrados !== null ? emailsFiltrados : null}
                   emailSelecionado={emailSelecionado}
                   aoMarcarComoLido={marcarComoLido}
+                  pastaSelecionada={pastaSelecionada}
                 />
 
                 <EmailViewer email={emailAtual} />

@@ -24,6 +24,11 @@ export default function Sidebar({ pastaSelecionada, aoSelecionarPasta }) {
             nome: "Lixeira",
             icone: "fa-solid fa-trash",
             quantidade: 2
+        },
+        {
+            nome: "Assist AI",
+            icone: "fa-solid fa-robot",
+            quantidade: ""
         }
     ]
 

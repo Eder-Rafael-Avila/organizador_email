@@ -1,0 +1,58 @@
+.comp-assistSection {
+    width: 55rem;
+
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        align-self: center;
+    }
+
+    .chat-area {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+
+        padding: 1rem;
+        border-radius: 1rem;
+
+        background-color: var(--corMagentaEscuro);
+        height: 100%;
+
+        .text-bar {
+            display: flex;
+            gap: .2rem;
+            align-items: center;
+
+            width: 100%;
+
+            input {
+                padding: 1.3rem 2rem;
+                font: 500 1.6rem 'Poppins';
+                flex: 3;
+
+                border-radius: 1rem 0 0 1rem;
+                outline: none;
+                border: none;
+            }
+
+            button {
+                background-color: var(--corDarkAmetist);
+                color: white;
+
+                padding: 1.3rem 2rem;
+                font: 500 1.6rem 'Poppins';
+                flex: 1;
+
+                border-radius: 0 1rem 1rem 0;
+                outline: none;
+                border: none;
+            }
+
+            input, button {
+                box-shadow: 0px 2px 5px var(--corDarkAmetist);
+            }
+        }
+    }
+}
