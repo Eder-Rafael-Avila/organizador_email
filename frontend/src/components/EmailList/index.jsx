@@ -3,7 +3,13 @@ import './index.scss'
 import EmailItem from '../EmailItem'
 import AssistAiSection from '../AssistAISection'
 
-export default function EmailList({ aoSelecionarEmail, emails, emailSelecionado, aoMarcarComoLido, pastaSelecionada }) {
+export default function EmailList({ 
+    aoSelecionarEmail,
+    emails,
+    setEmails,
+    emailSelecionado,
+    aoMarcarComoLido,
+    pastaSelecionada }) {
 
     if (pastaSelecionada === "Assist AI") {
         return (
@@ -25,7 +31,7 @@ export default function EmailList({ aoSelecionarEmail, emails, emailSelecionado,
                         email={email}
                         aoClicar={() => {
                             aoSelecionarEmail(email.id)
-                            aoMarcarComoLido(email.id)
+                            aoMarcarComoLido(email.id, setEmails, emails)
                         }}
                         selecionado={emailSelecionado === email.id}
                     />

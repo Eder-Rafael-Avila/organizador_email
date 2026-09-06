@@ -1,5 +1,6 @@
 import './index.scss'
 import { useState } from "react";
+import { restaurarEmail, arquivarEmails, excluirEmail, marcarComoLido, marcarComoNaoLido, alternarImportante } from '../../utils/acoesEmails'
 
 import Header from '../../components/Header'
 import Sidebar from '../../components/Sidebar'
@@ -17,52 +18,52 @@ export default function Home() {
       remetente: "Google",
       assunto: "Seu relatório mensal está disponível",
       preview: "Confira as novidades e informações da sua conta...",
+      conteudo: "Olá! Seu relatório mensal já está disponível. Acesse sua conta para conferir todas as informações.",
       data: "05/09/2026",
       lido: false,
-      pasta: "Entrada"
+      importante: true,
+      pasta: "Entrada",
+      pastaAnterior: null
     },
     {
       id: 2,
       remetente: "FREI",
       assunto: "Avisos importantes do curso",
       preview: "Temos algumas informações importantes para você...",
+      conteudo: "Olá! A feira de profissões 2026 está chegando e nós o aguardamos com muito carinho!",
       data: "05/09/2026",
       lido: false,
-      pasta: "Importantes"
+      importante: true,
+      pasta: "Entrada",
+      pastaAnterior: null
     },
     {
       id: 3,
       remetente: "Netflix",
       assunto: "Novidades que você pode gostar",
       preview: "Confira os lançamentos desta semana...",
+      conteudo: "Devoradores de estrelas, Toy Story 5, só filme bao",
       data: "05/09/2026",
       lido: true,
-      pasta: "Arquivados"
+      importante: false,
+      pasta: "Arquivados",
+      pastaAnterior: null
     }
   ]);
   
   const emailsFiltrados = emails.filter(
-    (email) => email.pasta === pastaSelecionada
+    email => {
+      if (pastaSelecionada === "Importantes") {
+        return email.importante === true;
+      }
+  
+      return email.pasta === pastaSelecionada;
+    }
   );
   
   const emailAtual = emailsFiltrados.find(
     (email) => email.id === emailSelecionado
   );
-
-  function marcarComoLido(id) {
-    setEmails(
-      emails.map(email => {
-        if (email.id === id) {
-          return {
-            ...email,
-            lido: true
-          };
-        }
-        
-        return email;
-      })
-    )
-  }
 
   return (
       <div className='page-home'>
@@ -80,12 +81,22 @@ export default function Home() {
                 <EmailList 
                   aoSelecionarEmail={setEmailSelecionado}
                   emails={emailsFiltrados !== null ? emailsFiltrados : null}
+                  setEmails={setEmails}
                   emailSelecionado={emailSelecionado}
                   aoMarcarComoLido={marcarComoLido}
                   pastaSelecionada={pastaSelecionada}
                 />
 
-                <EmailViewer email={emailAtual} />
+                <EmailViewer 
+                  email={emailAtual}
+                  aoArquivar={arquivarEmails}
+                  aoExcluir={excluirEmail}
+                  aoRestaurar={restaurarEmail}
+                  aoMarcarComoNaoLido={marcarComoNaoLido}
+                  aoAlternarImportante={alternarImportante}
+                  emails={emails}
+                  setEmails={setEmails}
+                />
               </div>
             </main>
           </div>

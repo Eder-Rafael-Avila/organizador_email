@@ -1,6 +1,6 @@
 .comp-emailList {
-    background-color: var(--corLavender);
-    scrollbar-color: var(--corMagenta) transparent;
+    background-color: var(--bg-primary);
+    scrollbar-color: var(--primary) transparent;
     scrollbar-width: thin;
 
     display: flex;
@@ -12,10 +12,10 @@
     height: calc(100vh - 65px);
     overflow-y: auto;
 
-    border-right: 2px solid var(--corMagentaEscuro);
+    border-right: 2px solid var(--border);
     padding: 1.2rem;
     border-radius: .5rem;
-    box-shadow: inset -4px 0 12px rgba(52, 17, 63, 0.08);
+    box-shadow: inset -4px 0 12px rgba(2, 6, 23, .28);
 
     p, i {
         font-size: 1.8rem;
@@ -27,7 +27,7 @@
 }
 
 .comp-emailList::-webkit-scrollbar-thumb {
-    background-color: var(--corMagenta);
+    background-color: var(--primary);
     border-radius: 999px;
 }
 

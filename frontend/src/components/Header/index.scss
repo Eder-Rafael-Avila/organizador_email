@@ -3,15 +3,15 @@
     display: flex;
     align-items: center;
     min-height: 6.5rem;
-    background: linear-gradient(110deg, var(--corDarkAmetist), var(--corMagentaEscuro));
+    background: linear-gradient(110deg, var(--bg-primary), var(--bg-secondary));
 
     width: 100%;
     padding: 2.5rem 2.5rem;
-    border-bottom: 3px solid var(--corMagenta);
-    box-shadow: 0 4px 14px rgba(52, 17, 63, 0.2);
+    border-bottom: 3px solid var(--primary);
+    box-shadow: 0 4px 14px rgba(2, 6, 23, .35);
 
     h1 {
-        color: var(--corClara);
+        color: var(--text-primary);
         margin: 0;
         font-size: 2.4rem;
         font-weight: 700;
@@ -25,6 +25,6 @@
         width: 4rem;
         height: .4rem;
         border-radius: 999px;
-        background-color: var(--corLavender);
+        background-color: var(--primary-hover);
     }
 }

@@ -6,17 +6,17 @@
     padding: 10px;
     border: none;
     background: transparent;
-    color: var(--corDarkAmetist);
+    color: var(--text-secondary);
     text-align: left;
     border-radius: .6rem;
     font-size: 1.6rem;
-    box-shadow: 0 2px 5px rgba(52, 17, 63, 0.16);
+    box-shadow: 0 2px 5px rgba(2, 6, 23, .24);
     margin-bottom: 1rem;
     transition: background-color .2s ease, color .2s ease, transform .2s ease;
 
     &:hover {
-        background: var(--corMagenta);
-        color: var(--corDarkAmetist);
+        background: var(--bg-surface);
+        color: var(--text-primary);
         transform: translateX(2px);
     }
 
@@ -34,13 +34,13 @@
 }
 
 .selecionada {
-    background-color: var(--corMagentaEscuro);
-    color: var(--corClara);
+    background-color: var(--primary);
+    color: var(--text-primary);
     font-weight: bold;
 
     &:hover {
-        background-color: var(--corMagentaEscuro);
-        color: var(--corClara);
+        background-color: var(--primary-hover);
+        color: var(--text-primary);
         font-weight: bold;
     }
 }

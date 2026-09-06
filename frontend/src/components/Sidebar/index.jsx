@@ -8,22 +8,22 @@ export default function Sidebar({ pastaSelecionada, aoSelecionarPasta }) {
         {
             nome: "Entrada",
             icone: "fa-solid fa-right-to-bracket",
-            quantidade: 12
+            quantidade: 1
         },
         {
             nome: "Importantes",
             icone: "fa-solid fa-circle-exclamation",
-            quantidade: 4
+            quantidade: 2
         },
         {
             nome: "Arquivados",
             icone: "fa-solid fa-box-archive",
-            quantidade: 8
+            quantidade: 5
         },
         {
             nome: "Lixeira",
             icone: "fa-solid fa-trash",
-            quantidade: 2
+            quantidade: 4
         },
         {
             nome: "Assist AI",

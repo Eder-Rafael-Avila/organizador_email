@@ -1,16 +1,16 @@
 .comp-sidebar {
-    background: linear-gradient(180deg, var(--corRosaClaro), #d8bdca);
+    background: linear-gradient(180deg, var(--bg-secondary), var(--bg-primary));
 
     width: 22rem;
     padding: 2rem;
-    border-right: 2px solid var(--corMagentaEscuro);
+    border-right: 2px solid var(--border);
     min-height: calc(100vh - 65px);
-    box-shadow: 4px 0 14px rgba(52, 17, 63, 0.12);
+    box-shadow: 4px 0 14px rgba(2, 6, 23, .3);
 
     h2 {
-        color: var(--corDarkAmetist);
+        color: var(--text-primary);
         margin-top: 0;
-        border-bottom: 2px solid var(--corMagentaEscuro);
+        border-bottom: 2px solid var(--border);
         padding-bottom: .8rem;
         margin-bottom: 3rem;
         font-size: 2.2rem;

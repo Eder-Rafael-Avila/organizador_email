@@ -1,20 +1,227 @@
 .comp-emailViewer {
     display: flex;
     flex-direction: column;
-    align-items: center;
-
-    background-color: var(--corLavender);
+    gap: 1.2rem;
+    min-width: 0;
+    background: linear-gradient(145deg, var(--bg-primary), var(--bg-secondary));
 
     flex: 1;
-    padding: 1rem;
+    padding: 1.6rem;
 
-    .email-remetente {
-        align-self: start;
+    .email {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        width: 100%;
+        min-height: 0;
+
+        overflow: hidden;
+        background-color: var(--bg-surface);
+        border: 1px solid var(--border);
+        border-radius: 1.2rem;
+        box-shadow: 0 1.2rem 3rem rgba(2, 6, 23, .38);
+
+        .email-header {
+            padding: 2.2rem 2.4rem 1.4rem;
+            border-bottom: 1px solid var(--border);
+
+            h2 {
+                margin: 0;
+                color: var(--text-primary);
+                font-size: 2.2rem;
+                font-weight: 700;
+                line-height: 1.3;
+            }
+        }
+
+        .email-remetente {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.6rem;
+            padding: 1.4rem 2.4rem;
+            background-color: var(--bg-secondary);
+
+            h3, p {
+                margin: 0;
+            }
+
+            h3 {
+                overflow: hidden;
+                color: var(--text-primary);
+                font-size: 1.4rem;
+                font-weight: 600;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            p {
+                flex-shrink: 0;
+                color: var(--text-muted);
+                font-size: 1.2rem;
+            }
+        }
+
+        .email-content {
+            flex: 1;
+            padding: 2.4rem;
+            overflow-y: auto;
+            color: var(--text-secondary);
+
+            p {
+                max-width: 76rem;
+                margin: 0;
+                font-size: 1.45rem;
+                line-height: 1.85;
+                white-space: pre-wrap;
+            }
+        }
+    }
+
+    .actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: .8rem;
+        width: 100%;
+        padding: 1rem 1.2rem;
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        box-shadow: 0 .6rem 1.8rem rgba(2, 6, 23, .3);
+
+        button {
+            min-height: 3.6rem;
+            padding: .7rem 1.2rem;
+            color: var(--text-primary);
+            background-color: var(--primary);
+            border: 1px solid var(--primary);
+            border-radius: .7rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            box-shadow: 0 .2rem .4rem rgba(2, 6, 23, .28);
+            transition: background-color .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+
+            &:hover {
+                background-color: var(--primary-hover);
+                border-color: var(--primary-hover);
+                box-shadow: 0 .4rem .8rem rgba(2, 6, 23, .38);
+                transform: translateY(-1px);
+            }
+
+            &:focus-visible {
+                outline: 3px solid var(--secondary);
+                outline-offset: 2px;
+            }
+
+            &.action-primary {
+                background-color: var(--secondary);
+                border-color: var(--secondary);
+
+                &:hover {
+                    background-color: var(--ai);
+                    border-color: var(--ai);
+                }
+            }
+
+            &.action-delete {
+                color: var(--text-primary);
+                background-color: var(--danger);
+                border-color: var(--danger);
+
+                &:hover {
+                    background-color: var(--danger-hover);
+                    border-color: var(--danger-hover);
+                }
+            }
+
+            &.action-star {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 3.6rem;
+                padding: 0;
+                color: var(--bg-primary);
+                background-color: var(--important);
+                border-color: var(--important);
+
+                &:hover {
+                    background-color: var(--important-hover);
+                    border-color: var(--important-hover);
+                }
+
+                i {
+                    font-size: 1.5rem;
+                }
+            }
+
+            &.action-restore {
+                background-color: var(--secondary);
+                border-color: var(--secondary);
+
+                &:hover {
+                    background-color: var(--ai);
+                    border-color: var(--ai);
+                }
+            }
+        }
     }
 
     #nenhumEmail {
         display: flex;
+        justify-content: center;
+        align-items: center;
 
         width: 100%;
+        height: 100%;
+
+        p {
+            margin: 0;
+            padding: 3rem;
+            color: var(--text-primary);
+            background-color: var(--bg-surface);
+            border: 1px dashed var(--border);
+            border-radius: 1rem;
+            font-size: 1.6rem;
+            text-align: center;
+        }
+    }
+}
+
+@media (max-width: 72rem) {
+    .comp-emailViewer {
+        padding: 1.2rem;
+
+        .email {
+            .email-header {
+                padding: 1.8rem;
+
+                h2 {
+                    font-size: 1.9rem;
+                }
+            }
+
+            .email-remetente,
+            .email-content {
+                padding-right: 1.8rem;
+                padding-left: 1.8rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 48rem) {
+    .comp-emailViewer {
+        .email-remetente {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: .4rem;
+        }
+
+        .actions {
+            button:not(:last-child) {
+                flex: 1 1 calc(50% - .8rem);
+            }
+        }
     }
 }
