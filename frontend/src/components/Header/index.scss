@@ -3,12 +3,12 @@
     display: flex;
     align-items: center;
     min-height: 6.5rem;
-    background: linear-gradient(110deg, var(--bg-primary), var(--bg-secondary));
+    background: linear-gradient(110deg, var(--bg-surface), var(--bg-secondary));
 
     width: 100%;
     padding: 2.5rem 2.5rem;
     border-bottom: 3px solid var(--primary);
-    box-shadow: 0 4px 14px rgba(2, 6, 23, .35);
+    box-shadow: 0 4px 14px rgba(8, 126, 164, .16);
 
     h1 {
         color: var(--text-primary);
@@ -25,6 +25,6 @@
         width: 4rem;
         height: .4rem;
         border-radius: 999px;
-        background-color: var(--primary-hover);
+        background-color: var(--primary);
     }
 }

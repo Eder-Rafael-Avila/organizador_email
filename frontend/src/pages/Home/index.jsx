@@ -1,5 +1,5 @@
 import './index.scss'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { restaurarEmail, arquivarEmails, excluirEmail, marcarComoLido, marcarComoNaoLido, alternarImportante } from '../../utils/acoesEmails'
 
 import Header from '../../components/Header'

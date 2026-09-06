@@ -1,28 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-  --bg-primary: #0f172a;
-  --bg-secondary: #172033;
-  --bg-surface: #1e293b;
+  --bg-primary: #f5f9fc;
+  --bg-secondary: #e8f4f8;
+  --bg-surface: #ffffff;
 
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
+  --text-primary: #102a43;
+  --text-secondary: #486581;
+  --text-muted: #829ab1;
 
-  --border: #334155;
+  --border: #d9e2ec;
 
-  --primary: #6366f1;
-  --primary-hover: #818cf8;
-  --secondary: #a855f7;
+  --primary: #087ea4;
+  --primary-hover: #05668d;
+  --secondary: #06b6d4;
+  --secondary-hover: #0891b2;
+  --text-on-accent: #ffffff;
 
-  --success: #22c55e;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-  --danger-hover: #f87171;
+  --success: #16a34a;
+  --warning: #e09f3e;
+  --danger: #d64545;
+  --danger-hover: #b83232;
 
-  --important: #facc15;
-  --important-hover: #fde047;
-  --ai: #c084fc;
+  --important: #f4b942;
+  --important-hover: #d99a24;
+  --ai: #0891b2;
 }
 
 * {

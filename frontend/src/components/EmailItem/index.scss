@@ -1,7 +1,7 @@
 .comp-emailItem {
     background-color: var(--bg-surface);
     color: var(--text-secondary);
-    box-shadow: 0 3px 8px rgba(2, 6, 23, .3);
+    box-shadow: 0 3px 8px rgba(15, 23, 42, .08);
     border: 1px solid var(--border);
     border-left: 4px solid transparent;
     border-radius: .6rem;
@@ -49,7 +49,7 @@
     &:hover {
         border-color: var(--primary-hover);
         border-left-color: var(--primary);
-        box-shadow: 0 5px 12px rgba(2, 6, 23, .4);
+        box-shadow: 0 5px 12px rgba(8, 126, 164, .2);
         transform: translateY(-1px);
     }
 }
