@@ -26,14 +26,17 @@ export default function Home() {
   const emailAtual = emailsFiltrados.find(
     (email) => email.id === emailSelecionado
   );
-    
+
   useEffect(() => {
-      fetch("http://localhost:7070/emails")
-        .then(resposta => resposta.json())
-        .then(dados => {
+      async function carregarEmails() {
+          const resposta = await fetch("http://localhost:7070/gmail/emails");
+          const dados = await resposta.json();
+
           setEmails(dados);
-        });
-  }, [])
+      }
+
+      carregarEmails();
+  }, []);
 
   return (
       <div className='page-home'>
@@ -43,6 +46,7 @@ export default function Home() {
             <Sidebar 
               pastaSelecionada={pastaSelecionada}
               aoSelecionarPasta={setPastaSelecionada}
+              emails={emails}
             />
 
             <main>
@@ -66,6 +70,7 @@ export default function Home() {
                   aoAlternarImportante={alternarImportante}
                   emails={emails}
                   setEmails={setEmails}
+                  pastaSelecionada={pastaSelecionada}
                 />
               </div>
             </main>

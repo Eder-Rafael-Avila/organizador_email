@@ -9,7 +9,7 @@
     width: 100%;
     height: auto;
 
-    padding: .2rem 2rem;
+    padding: .8rem 1.4rem 1.2rem;
     cursor: pointer;
     transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
 
@@ -19,13 +19,43 @@
 
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        gap: 1rem;
 
         font-size: 1.9rem;
         margin: 1rem 0;
         padding-bottom: 1rem;
 
-        span {
+        .remetente {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            flex: 1;
+            gap: .2rem;
+            background-color: transparent;
+            color: var(--text-primary);
+            border-radius: 0;
+            padding: 0;
+
+            strong {
+                overflow: hidden;
+                font-size: 1.9rem;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            small {
+                overflow: hidden;
+                color: var(--text-muted);
+                font-size: 1.15rem;
+                font-weight: 500;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+
+        .status {
+            flex-shrink: 0;
+            white-space: nowrap;
             color: var(--text-on-accent);
             background-color: var(--primary);
             border-radius: 999px;
@@ -36,14 +66,19 @@
     }
 
     > span {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         font-size: 1.4rem;
         color: var(--text-muted);
         font-weight: 600;
     }
 
     p { 
+        overflow-wrap: anywhere;
         font-size: 1.6rem;
-        margin-top: 2rem;
+        margin: .9rem 0 0;
     }    
     
     &:hover {
@@ -64,7 +99,7 @@
     font-weight: bold;
     border-left-color: var(--secondary);
 
-    h3 > span {
+    h3 > .status {
         color: var(--text-on-accent);
         background-color: var(--secondary);
         font-style: italic;

@@ -9,8 +9,11 @@ export default function EmailItem({ email, aoClicar, selecionado }) {
             onClick={aoClicar}
         >
             <h3>
-                {email.remetente}
-                <span>{email.lido ? "Lido" : "Não Lido"}</span>
+                <span className='remetente'>
+                    <strong>{email.remetente}</strong>
+                    {email.remetenteEmail && <small>{email.remetenteEmail}</small>}
+                </span>
+                <span className='status'>{email.lido ? "Lido" : "Não Lido"}</span>
             </h3>
             <span>{email.assunto}</span>
             <p>{email.preview}</p>

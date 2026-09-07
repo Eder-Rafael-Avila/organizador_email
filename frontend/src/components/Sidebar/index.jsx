@@ -2,33 +2,41 @@ import './index.scss'
 
 import SidebarItem from '../SidebarItem'
 
-export default function Sidebar({ pastaSelecionada, aoSelecionarPasta }) {
+export default function Sidebar({ pastaSelecionada, aoSelecionarPasta, emails }) {
+
+    const quantidadePorPasta = nome => {
+        if (nome === "Importantes") {
+            return emails.filter(email => email.importante).length;
+        }
+
+        return emails.filter(email => email.pasta === nome).length;
+    };
 
     const pastas = [
         {
             nome: "Entrada",
             icone: "fa-solid fa-right-to-bracket",
-            quantidade: 1
+            quantidade: quantidadePorPasta("Entrada")
         },
         {
             nome: "Importantes",
             icone: "fa-solid fa-circle-exclamation",
-            quantidade: 2
+            quantidade: quantidadePorPasta("Importantes")
         },
         {
             nome: "Arquivados",
             icone: "fa-solid fa-box-archive",
-            quantidade: 5
+            quantidade: quantidadePorPasta("Arquivados")
         },
         {
             nome: "Lixeira",
             icone: "fa-solid fa-trash",
-            quantidade: 4
+            quantidade: quantidadePorPasta("Lixeira")
         },
         {
             nome: "Assist AI",
             icone: "fa-solid fa-robot",
-            quantidade: ""
+            quantidade: null
         }
     ]
 

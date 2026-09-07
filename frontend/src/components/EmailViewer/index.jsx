@@ -1,4 +1,5 @@
 import './index.scss'
+import { useState } from 'react';
 
 export default function EmailViewer({ 
     email,
@@ -8,9 +9,56 @@ export default function EmailViewer({
     aoMarcarComoNaoLido,
     aoAlternarImportante,
     emails,
-    setEmails }) {
+    setEmails,
+    pastaSelecionada }) {
 
-    if (!email) {
+    const [analisando, setAnalisando] = useState(false);
+
+    async function analisarComIA() {
+
+        setAnalisando(true);
+
+        try {
+            const resposta = await fetch("http://localhost:7070/analisar-email", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    id: email.id
+                })
+            });
+    
+            const dados = await resposta.json();
+            
+            setEmails(emailsAnteriores => {
+                return emailsAnteriores.map(emailAtual => {
+                    if (emailAtual.id === email.id) {
+                        return {
+                            ...emailAtual,
+                            classificacao: dados.classificacao
+                        }
+                    } else {
+                        return emailAtual
+                    }
+                })
+            })
+        } finally {
+            setAnalisando(false);
+        }
+
+        
+    }
+
+    if (pastaSelecionada === "Assist AI") {
+        return (
+            <div className='comp-none'>
+
+            </div>
+        )
+    }
+
+    if (!email ) {
         return (
             <section className='comp-emailViewer'>
                 <div id='nenhumEmail'>
@@ -66,10 +114,36 @@ export default function EmailViewer({
                             onClick={() => aoAlternarImportante(email.id, setEmails, emails)}>
                             <i className={`${email.importante ? 'fa-solid fa-star' : 'fa-regular fa-star' }`} />
                         </button>
+
+                        <button 
+                            onClick={analisarComIA}
+                            disabled={analisando}   
+                        >
+                            {analisando ? "Analisando..." : "Analisar com IA"}
+                        </button>
                     </>
                 )}
-
             </div>
+
+            {email.classificacao && (
+                <div className='ai-analysis'>
+                    <div className='ai-analysis-header'>
+                        <span className='ai-analysis-icon'><i className='fa-solid fa-wand-magic-sparkles' /></span>
+                        <div>
+                            <h3>Análise da IA</h3>
+                            <p>Leitura automática deste e-mail</p>
+                        </div>
+                    </div>
+                    <div className='ai-analysis-grid'>
+                        <p><span>Categoria</span><strong>{email.classificacao.Categoria}</strong></p>
+                        <p><span>Importância</span><strong>{email.classificacao["Importância"]}</strong></p>
+                        <p><span>Urgência</span><strong>{email.classificacao["Urgência"]}</strong></p>
+                        <p><span>Necessidade de ação</span><strong>{email.classificacao["Necessidade de ação"]}</strong></p>
+                        <p><span>Prazo</span><strong>{email.classificacao.Prazo ?? "Nenhum"}</strong></p>
+                    </div>
+                </div>
+            )}
+
         </section>
     );
 }

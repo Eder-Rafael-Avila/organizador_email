@@ -6,31 +6,56 @@ export default function AssistAiSection() {
 
     const [mensagensChat, setMensagensChat] = useState([]);
     const [msgUsuario, setMsgUsuario] = useState('');
+    const [respondendo, setRespondendo] = useState(false);
 
     async function enviarMensagem(e) {
         e.preventDefault();
-        
-        setMensagensChat(mensagensAnteriores => [
-            ...mensagensAnteriores,
-            msgUsuario
-        ]);
 
-        const resposta = await fetch("http://localhost:7070/assist", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                mensagem: msgUsuario
-            })
-        });
+        const mensagem = msgUsuario.trim();
 
-        const dados = await resposta.json();
+        if (!mensagem || respondendo) {
+            return;
+        }
+
+        setRespondendo(true);
+        setMsgUsuario('');
+
+        try {
+            const novoHistorico = [
+                ...mensagensChat,
+                {
+                    papel: "Usuário",
+                    mensagem
+                }
+            ]
     
-        setMensagensChat(mensagensAnteriores => [
-            ...mensagensAnteriores,
-            dados.resposta
-        ])
+            setMensagensChat(novoHistorico);
+    
+    
+            const resposta = await fetch("http://localhost:7070/assist", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    mensagem,
+                    historico: novoHistorico
+                })
+            });
+    
+            const dados = await resposta.json();
+        
+            setMensagensChat(mensagensAnteriores => [
+                ...mensagensAnteriores,
+                {
+                    papel: "Assistente AI de e-mails",
+                    mensagem: dados.resposta
+                }
+            ])
+        } finally {
+            setRespondendo(false)
+        }
+        
 
     }
 
@@ -45,23 +70,35 @@ export default function AssistAiSection() {
                         {
                             mensagensChat.map((msg, pos) => {
                                 return (
-                                    <li key={pos}>
-                                        {msg}
+                                    <li className={msg.papel === 'Usuário' ? 'mensagem-usuario' : 'mensagem-assistente'} key={pos}>
+                                        {msg.mensagem}
                                     </li>
                                 )
                             })
+                        }
+
+                        {
+                            respondendo && (
+                                <li className='mensagem-assistente'>
+                                    Assistente está pensando...
+                                </li>
+                            )
                         }
                     </ul>
                 </div>
 
                 <div className='text-bar'>
                     <form onSubmit={enviarMensagem}>
-                        <input type="text"
+                        <input
+                            type="text"
                             placeholder='Quais são minhas tarefas da semana?'
                             value={msgUsuario}
                             onChange={e => setMsgUsuario(e.target.value)} />
-                        <button>
-                            Enviar
+                        <button
+                            type='submit'
+                            disabled={respondendo}
+                        >   
+                            {respondendo ? "Respondendo..." : "Enviar"}
                         </button>
                     </form>
                 </div>
