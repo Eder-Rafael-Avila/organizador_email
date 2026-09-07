@@ -1,20 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-  --bg-primary: #f5f9fc;
-  --bg-secondary: #e8f4f8;
-  --bg-surface: #ffffff;
+  --bg-primary: #eaf0f4;
+  --bg-secondary: #d9e5ec;
+  --bg-surface: #f8fafc;
+  --bg-header: #263b4a;
 
-  --text-primary: #102a43;
-  --text-secondary: #486581;
-  --text-muted: #829ab1;
+  --text-primary: #203545;
+  --text-secondary: #405a6b;
+  --text-muted: #667e8c;
 
-  --border: #d9e2ec;
+  --border: #b6c8d4;
 
-  --primary: #087ea4;
-  --primary-hover: #05668d;
-  --secondary: #06b6d4;
-  --secondary-hover: #0891b2;
+  --primary: #315a72;
+  --primary-hover: #24465a;
+  --secondary: #3f809f;
+  --secondary-hover: #326b86;
   --text-on-accent: #ffffff;
 
   --success: #16a34a;
@@ -24,7 +25,7 @@
 
   --important: #f4b942;
   --important-hover: #d99a24;
-  --ai: #0891b2;
+  --ai: #397d91;
 }
 
 * {
@@ -52,6 +53,10 @@ button {
 h2, h1 {
   color: var(--text-primary);
   font-size: 2rem;
+}
+
+img {
+  max-width: 100%;
 }
 
 /////////////////////////////////////////////////////

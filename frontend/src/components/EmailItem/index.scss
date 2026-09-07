@@ -1,7 +1,7 @@
 .comp-emailItem {
     background-color: var(--bg-surface);
     color: var(--text-secondary);
-    box-shadow: 0 3px 8px rgba(15, 23, 42, .08);
+    box-shadow: 0 3px 8px rgba(38, 59, 74, .1);
     border: 1px solid var(--border);
     border-left: 4px solid transparent;
     border-radius: .6rem;
@@ -26,7 +26,7 @@
         padding-bottom: 1rem;
 
         span {
-            color: var(--text-primary);
+            color: var(--text-on-accent);
             background-color: var(--primary);
             border-radius: 999px;
             padding: .2rem .8rem;
@@ -49,7 +49,7 @@
     &:hover {
         border-color: var(--primary-hover);
         border-left-color: var(--primary);
-        box-shadow: 0 5px 12px rgba(8, 126, 164, .2);
+        box-shadow: 0 5px 12px rgba(38, 59, 74, .18);
         transform: translateY(-1px);
     }
 }
@@ -65,7 +65,7 @@
     border-left-color: var(--secondary);
 
     h3 > span {
-        color: var(--text-primary);
+        color: var(--text-on-accent);
         background-color: var(--secondary);
         font-style: italic;
     }
