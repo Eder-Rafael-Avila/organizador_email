@@ -61,6 +61,20 @@ export function restaurarEmail(id, setEmails) {
     )
 }
 
+export function removerArquivado(id, setEmails) {
+    setEmails(emailsAtuais => 
+        emailsAtuais.map(email => {
+            if (email.id === id) {
+                return {
+                    ...email,
+                    pastaAnterior: null,
+                    pasta: email.pastaAnterior
+                }
+            }
+        })
+    )
+}
+
 export function arquivarEmails(id, setEmails) {
     setEmails(emailsAtuais =>
         emailsAtuais.map(email => {

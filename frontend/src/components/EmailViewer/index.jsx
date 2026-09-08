@@ -4,6 +4,7 @@ import { useState } from 'react';
 export default function EmailViewer({ 
     email,
     aoArquivar,
+    aoRemoverArquivado,
     aoExcluir,
     aoRestaurar,
     aoMarcarComoNaoLido,
@@ -91,11 +92,16 @@ export default function EmailViewer({
                         onClick={() => aoRestaurar(email.id, setEmails, emails)}>
                         Restaurar
                     </button>
-                ) : (
+                ) : email.pasta !== "Arquivados" ? (
                     <>
                         <button
                             className='action-primary'
-                            onClick={() => aoArquivar(email.id, setEmails, emails)}>
+                            onClick={() => {
+                                aoArquivar(email.id, setEmails, emails)
+                                if (email.importante === true) {
+                                    aoAlternarImportante(email.id, setEmails, emails)
+                                }
+                            }}>
                             Arquivar E-mail
                         </button>
 
@@ -115,6 +121,25 @@ export default function EmailViewer({
                             <i className={`${email.importante ? 'fa-solid fa-star' : 'fa-regular fa-star' }`} />
                         </button>
 
+                        <button 
+                            onClick={analisarComIA}
+                            disabled={analisando}   
+                        >
+                            {analisando ? "Analisando..." : "Analisar com IA"}
+                        </button>
+                    </>
+                ) : (
+                    <>
+                        <button onClick={() => {
+                            aoRemoverArquivado(email.id, setEmails, emails)
+                        }}>
+                            Desarquivar
+                        </button>
+                        <button
+                            className='action-delete'
+                            onClick={() => aoExcluir(email.id, setEmails, emails)}>
+                            Excluir E-mail
+                        </button>
                         <button 
                             onClick={analisarComIA}
                             disabled={analisando}   

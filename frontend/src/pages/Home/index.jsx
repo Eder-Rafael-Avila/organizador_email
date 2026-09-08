@@ -1,6 +1,6 @@
 import './index.scss'
 import { useState, useEffect } from "react";
-import { restaurarEmail, arquivarEmails, excluirEmail, marcarComoLido, marcarComoNaoLido, alternarImportante } from '../../utils/acoesEmails'
+import { restaurarEmail, arquivarEmails, excluirEmail, marcarComoLido, marcarComoNaoLido, alternarImportante, removerArquivado } from '../../utils/acoesEmails'
 
 import Header from '../../components/Header'
 import Sidebar from '../../components/Sidebar'
@@ -64,6 +64,7 @@ export default function Home() {
                 <EmailViewer 
                   email={emailAtual}
                   aoArquivar={arquivarEmails}
+                  aoRemoverArquivado={removerArquivado}
                   aoExcluir={excluirEmail}
                   aoRestaurar={restaurarEmail}
                   aoMarcarComoNaoLido={marcarComoNaoLido}
