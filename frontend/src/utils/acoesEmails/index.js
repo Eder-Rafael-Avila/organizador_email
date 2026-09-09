@@ -71,6 +71,8 @@ export function removerArquivado(id, setEmails) {
                     pasta: email.pastaAnterior
                 }
             }
+
+            return email;
         })
     )
 }
@@ -81,6 +83,7 @@ export function arquivarEmails(id, setEmails) {
         if (email.id === id) {
             return {
             ...email,
+            pastaAnterior: email.pasta,
             pasta: "Arquivados"
             };
         }
