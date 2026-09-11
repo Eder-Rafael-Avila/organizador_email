@@ -2,7 +2,7 @@ import './index.scss'
 
 import { useState } from 'react';
 
-export default function AssistAiSection() {
+export default function AssistAiSection({ emails }) {
 
     const [mensagensChat, setMensagensChat] = useState([]);
     const [msgUsuario, setMsgUsuario] = useState('');
@@ -39,7 +39,8 @@ export default function AssistAiSection() {
                 },
                 body: JSON.stringify({
                     mensagem,
-                    historico: novoHistorico
+                    historico: novoHistorico,
+                    emails
                 })
             });
     

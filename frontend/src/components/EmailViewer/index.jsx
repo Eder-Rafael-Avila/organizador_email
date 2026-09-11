@@ -26,7 +26,7 @@ export default function EmailViewer({
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    id: email.id
+                    email
                 })
             });
     

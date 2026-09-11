@@ -3,7 +3,6 @@ import cors from 'cors';
 
 import 'dotenv/config';
 
-import emailRoutes from './routes/emailRoutes.js';
 import aiRoutes from './routes/aiRoutes.js';
 import authRoutes from "./routes/authRoutes.js";
 import gmailRoutes from "./routes/gmailRoutes.js";
@@ -16,8 +15,6 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send('API FUNCIONANDOAAAAAAA')
 })
-
-app.use(emailRoutes);
 
 app.use(aiRoutes);
 

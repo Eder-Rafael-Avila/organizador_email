@@ -6,6 +6,7 @@ import AssistAiSection from '../AssistAISection'
 export default function EmailList({ 
     aoSelecionarEmail,
     emails,
+    todosOsEmails,
     setEmails,
     emailSelecionado,
     aoMarcarComoLido,
@@ -13,7 +14,9 @@ export default function EmailList({
 
     if (pastaSelecionada === "Assist AI") {
         return (
-            <AssistAiSection />
+            <AssistAiSection 
+                emails={todosOsEmails}
+            />
         )
     }
 

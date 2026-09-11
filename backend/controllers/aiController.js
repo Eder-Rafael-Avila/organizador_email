@@ -1,5 +1,4 @@
 import OpenAI from 'openai';
-import { obterEmailsGmail } from '../services/gmailEmailService.js';
 
 const ai = new OpenAI({
     baseURL: "https://openrouter.ai/api/v1",
@@ -10,7 +9,9 @@ export async function assistirAi(req, res) {
 
     const mensagem = req.body.mensagem;
     const historico = req.body.historico || [];
-    const emails = await obterEmailsGmail();
+    const emails = req.body.emails || [];
+    console.log("Quantidade de emails recebidos:", emails.length);
+    console.log(emails);
 
     const contextoEmails = emails.map(email => {
         return `
@@ -99,10 +100,7 @@ export async function assistirAi(req, res) {
 
 export async function analisarEmail(req, res) {
 
-    const id = req.body.id;
-    const emails = await obterEmailsGmail();
-
-    const email = emails.find(emailAtual => String(emailAtual.id) === String(id));
+    const email = req.body.email;
 
     if (!email) {
         return res.status(404).json({
@@ -184,7 +182,7 @@ export async function analisarEmail(req, res) {
     const classificacao = JSON.parse(textoLimpo);
 
     res.json({
-        id: id,
+        id: email.id,
         classificacao: classificacao
     })
 }

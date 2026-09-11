@@ -55,6 +55,7 @@ export default function Home() {
                 <EmailList 
                   aoSelecionarEmail={setEmailSelecionado}
                   emails={emailsFiltrados !== null ? emailsFiltrados : null}
+                  todosOsEmails={emails}
                   setEmails={setEmails}
                   emailSelecionado={emailSelecionado}
                   aoMarcarComoLido={marcarComoLido}
