@@ -92,7 +92,7 @@ export default function Header() {
                             window.location.href = "http://localhost:7070/auth/google/logout";
                         }} aria-label='Trocar conta Google'>
                             <span aria-hidden='true'>↻</span>
-                            <span>Trocar conta</span>
+                            <span>Trocar de conta</span>
                         </button>
                     </>
                 )}
