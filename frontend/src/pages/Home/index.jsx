@@ -1,5 +1,6 @@
 import './index.scss'
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { restaurarEmail, arquivarEmails, excluirEmail, marcarComoLido, marcarComoNaoLido, alternarImportante, removerArquivado } from '../../utils/acoesEmails'
 
 import Header from '../../components/Header'
@@ -13,6 +14,9 @@ export default function Home() {
   const [emailSelecionado, setEmailSelecionado] = useState(null);
   
   const [emails, setEmails] = useState([]);
+  const [carregandoEmails, setCarregandoEmails] = useState(true);
+  const [erroEmails, setErroEmails] = useState(false);
+  const { search } = useLocation();
   
   const emailsFiltrados = emails.filter(
     email => {
@@ -28,15 +32,61 @@ export default function Home() {
   );
 
   useEffect(() => {
-      async function carregarEmails() {
-          const resposta = await fetch("http://localhost:7070/gmail/emails");
-          const dados = await resposta.json();
+      const controlador = new AbortController();
+      let novaTentativa;
 
-          setEmails(dados);
+      async function carregarEmails() {
+          setCarregandoEmails(true);
+          setErroEmails(false);
+
+          try {
+            const resposta = await fetch(
+              "http://localhost:7070/gmail/emails",
+              {
+                cache: "no-store",
+                signal: controlador.signal
+              }
+            );
+
+            if (!resposta.ok) {
+              throw new Error(`Falha ao consultar os e-mails: ${resposta.status}`);
+            }
+
+            const dados = await resposta.json();
+
+            if (!Array.isArray(dados)) {
+              throw new Error('A API não retornou uma lista de e-mails.');
+            }
+
+            setEmails(dados);
+          } catch (erro) {
+            if (erro.name !== 'AbortError') {
+              console.error('Não foi possível carregar os e-mails.', erro);
+              setEmails([]);
+              setErroEmails(true);
+            }
+          } finally {
+            if (!controlador.signal.aborted) {
+              setCarregandoEmails(false);
+            }
+          }
       }
 
       carregarEmails();
-  }, []);
+      window.addEventListener('focus', carregarEmails);
+      window.addEventListener('pageshow', carregarEmails);
+
+      if (new URLSearchParams(search).has('contaAtualizada')) {
+        novaTentativa = window.setTimeout(carregarEmails, 500);
+      }
+
+      return () => {
+        controlador.abort();
+        window.removeEventListener('focus', carregarEmails);
+        window.removeEventListener('pageshow', carregarEmails);
+        window.clearTimeout(novaTentativa);
+      };
+  }, [search]);
 
   return (
       <div className='page-home'>
@@ -49,12 +99,16 @@ export default function Home() {
               emails={emails}
             />
 
-            <main>
+            <main aria-busy={carregandoEmails}>
+              {erroEmails && (
+                <p role='alert'>Não foi possível carregar os e-mails da conta conectada.</p>
+              )}
+
               <div className='email-layout'>
 
                 <EmailList 
                   aoSelecionarEmail={setEmailSelecionado}
-                  emails={emailsFiltrados !== null ? emailsFiltrados : null}
+                  emails={emailsFiltrados}
                   todosOsEmails={emails}
                   setEmails={setEmails}
                   emailSelecionado={emailSelecionado}

@@ -34,10 +34,19 @@ if (fs.existsSync(caminhoToken)) {
 export function gerarUrlAutorizacao() {
     return oAuth2Client.generateAuthUrl({
         access_type: "offline",
+        prompt: "select_account",
         scope: [
             "https://www.googleapis.com/auth/gmail.readonly"
         ]
     });
+}
+
+export function desconectarGoogle() {
+    oAuth2Client.setCredentials({});
+
+    if (fs.existsSync(caminhoToken)) {
+        fs.unlinkSync(caminhoToken);
+    }
 }
 
 export function obterClienteGoogle() {
