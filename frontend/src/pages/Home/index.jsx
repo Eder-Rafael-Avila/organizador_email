@@ -73,8 +73,6 @@ export default function Home() {
       }
 
       carregarEmails();
-      window.addEventListener('focus', carregarEmails);
-      window.addEventListener('pageshow', carregarEmails);
 
       if (new URLSearchParams(search).has('contaAtualizada')) {
         novaTentativa = window.setTimeout(carregarEmails, 500);
@@ -82,8 +80,6 @@ export default function Home() {
 
       return () => {
         controlador.abort();
-        window.removeEventListener('focus', carregarEmails);
-        window.removeEventListener('pageshow', carregarEmails);
         window.clearTimeout(novaTentativa);
       };
   }, [search]);

@@ -33,12 +33,22 @@ export default function Header() {
 
                 const dados = await resposta.json();
                 setConta(dados);
+
             } catch (erro) {
                 if (erro.name !== 'AbortError') {
-                    console.error('Não foi possível carregar a conta conectada.', erro);
-                    setConta({ conectado: false, email: null });
+                    console.error(
+                        'Não foi possível carregar a conta conectada.',
+                        erro
+                    );
+
+                    setConta({
+                        conectado: false,
+                        email: null
+                    });
+
                     setErroConta(true);
                 }
+
             } finally {
                 if (!controlador.signal.aborted) {
                     setCarregandoConta(false);
@@ -47,8 +57,6 @@ export default function Header() {
         }
 
         carregarConta();
-        window.addEventListener('focus', carregarConta);
-        window.addEventListener('pageshow', carregarConta);
 
         if (new URLSearchParams(search).has('contaAtualizada')) {
             novaTentativa = window.setTimeout(carregarConta, 500);
@@ -56,8 +64,6 @@ export default function Header() {
 
         return () => {
             controlador.abort();
-            window.removeEventListener('focus', carregarConta);
-            window.removeEventListener('pageshow', carregarConta);
             window.clearTimeout(novaTentativa);
         };
     }, [search]);
