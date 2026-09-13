@@ -1,5 +1,8 @@
 import express from 'express';
 import cors from 'cors';
+import "./services/lembreteServices.js";
+import "./services/whatsappService.js";
+import { enviarMensagemWhatsApp } from "./services/whatsappService.js";
 
 import 'dotenv/config';
 
@@ -16,6 +19,27 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send('API FUNCIONANDOAAAAAAA')
 })
+
+app.get("/teste-whatsapp", async (req, res) => {
+    try {
+        await enviarMensagemWhatsApp(
+            "5511987315955",
+            "🔔 Teste do Mailly! O WhatsApp está funcionando."
+        );
+
+        res.json({
+            sucesso: true,
+            mensagem: "Mensagem enviada!"
+        });
+    } catch (erro) {
+        console.error(erro);
+
+        res.status(500).json({
+            sucesso: false,
+            erro: erro.message
+        });
+    }
+});
 
 app.use(aiRoutes);
 

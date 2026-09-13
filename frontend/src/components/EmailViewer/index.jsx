@@ -62,7 +62,7 @@ export default function EmailViewer({
         }
 
         const resposta = await fetch('http://localhost:7070/lembretes', {
-            method: POST,
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },

@@ -3,6 +3,9 @@ backend/node_modules/
 credentials.json
 token.json
 node_modules/
+recoveryCode
+.wwebjs_cache
+.wwebjs_auth
 
 # Logs
 logs
