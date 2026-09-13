@@ -1,3 +1,4 @@
+import { use } from 'react';
 import './index.scss'
 import { useState } from 'react';
 
@@ -14,6 +15,10 @@ export default function EmailViewer({
     pastaSelecionada }) {
 
     const [analisando, setAnalisando] = useState(false);
+    const [criandoLembrete, setCriandoLembrete] = useState(false);
+    const [comentarioLembrete, setComentarioLembrete] = useState('');
+    const [dataLembrete, setDataLembrete] = useState('');
+    const [horaLembrete, setHoraLembrete] = useState('');
 
     async function analisarComIA() {
 
@@ -49,6 +54,29 @@ export default function EmailViewer({
         }
 
         
+    }
+
+    async function criarLembrete() {
+        if (!dataLembrete || !horaLembrete || !comentarioLembrete.trim()) {
+            return;
+        }
+
+        const resposta = await fetch('http://localhost:7070/lembretes', {
+            method: POST,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailId: email.id,
+                comentario: comentarioLembrete,
+                data: dataLembrete,
+                hora: horaLembrete
+            })
+        });
+
+        const dados = await resposta.json();
+
+        console.log(dados);
     }
 
     if (pastaSelecionada === "Assist AI") {
@@ -127,6 +155,9 @@ export default function EmailViewer({
                         >
                             {analisando ? "Analisando..." : "Analisar com IA"}
                         </button>
+                        <button onClick={() => setCriandoLembrete(!criandoLembrete)}>
+                            🔔 Lembrar-me
+                        </button>
                     </>
                 ) : (
                     <>
@@ -149,6 +180,46 @@ export default function EmailViewer({
                     </>
                 )}
             </div>
+
+            {criandoLembrete && (
+                <div className="area-lembrete">
+                    <h3>Lembrar deste e-mail</h3>
+
+                    <label htmlFor="data">
+                        Data
+                        <input type="date"
+                               name="data" 
+                               id="data"
+                               value={dataLembrete}
+                               onChange={(e) => setDataLembrete(e.target.value)}
+                        />
+                    </label>
+
+                    <label htmlFor="horario">
+                        Horário
+                        <input type="time" 
+                               name="horario" 
+                               id="horario"
+                               value={horaLembrete}
+                               onChange={(e) => setHoraLembrete(e.target.value)}
+                        />
+                    </label>
+
+                    <label htmlFor="comentario">
+                        Comentário
+                        <textarea name="comentario"
+                                  id="comentario"
+                                  value={comentarioLembrete}
+                                  onChange={(e) => setComentarioLembrete(e.target.value)}  
+                                >
+                        </textarea>
+                    </label>
+
+                    <button onClick={criarLembrete}>
+                        Criar lembrete
+                    </button>
+                </div>
+            )}
 
             {email.classificacao && (
                 <div className='ai-analysis'>

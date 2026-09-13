@@ -6,6 +6,7 @@ import 'dotenv/config';
 import aiRoutes from './routes/aiRoutes.js';
 import authRoutes from "./routes/authRoutes.js";
 import gmailRoutes from "./routes/gmailRoutes.js";
+import lembreteRoutes from './routes/lembreteRoutes.js';
 
 const app = express();
 
@@ -21,6 +22,8 @@ app.use(aiRoutes);
 app.use(authRoutes);
 
 app.use(gmailRoutes);
+
+app.use(lembreteRoutes);
 
 app.listen(7070, () => {
     console.log(`API subiu com sucesso na porta 7070`);
