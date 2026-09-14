@@ -1,24 +1,39 @@
 import lembretes from '../data/lembretes.js';
+import { enviarMensagemWhatsApp } from './whatsappService.js';
 
-export function verificarLembretes() {
+export async function verificarLembretes() {
     const agora = new Date();
 
-    const dataAtual = agora.toISOString().split("T")[0];
+    console.log("🕐 Agora:", agora);
 
-    const horaAtual = agora.toTimeString().slice(0, 5);
+    for (const lembrete of lembretes) {
+        console.log("📌 Lembrete:", lembrete);
 
-    lembretes.forEach(lembrete => {
-        if (
-            !lembrete.enviado &&
-            lembrete.data === dataAtual &&
-            lembrete.hora === horaAtual
-        ) {
-            console.log("Lembrete disparado!");
-            console.log(lembrete);
+        const dataHoraLembrete = new Date(
+            `${lembrete.data}T${lembrete.hora}:00`
+        );
 
-            lembrete.enviado = true;
+        console.log("📅 Data do lembrete:", dataHoraLembrete);
+        console.log("⏰ Já passou?", agora >= dataHoraLembrete);
+
+        if (!lembrete.enviado && agora >= dataHoraLembrete) {
+            console.log('🔔 Lembrete disparado!');
+
+            try {
+                await enviarMensagemWhatsApp(
+                    process.env.NUMERO_WHATSAPP,
+                    `🔔 Lembrete do Mailly:\n\n${lembrete.comentario}`
+                );
+
+                lembrete.enviado = true;
+
+            } catch (erro) {
+                console.log(`❌ Erro interno da API: ${erro}`);
+            }
         }
-    });
+    }
+
+    console.log('Verificação feita');
 }
 
-setInterval(verificarLembretes, 60000);
+setInterval(verificarLembretes, 59000);

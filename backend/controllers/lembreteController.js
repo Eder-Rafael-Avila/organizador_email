@@ -19,6 +19,10 @@ export function criarLembrete(req, res) {
     };
 
     lembretes.push(novoLembrete);
+    console.log("📌 Lembretes cadastrados:", lembretes);
 
-    res.status(201).json(novoLembrete);
+    res.status(201).json({
+        criado: true,
+        lembrete: novoLembrete
+    });
 }

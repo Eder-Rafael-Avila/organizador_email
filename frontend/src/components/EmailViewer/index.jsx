@@ -1,4 +1,3 @@
-import { use } from 'react';
 import './index.scss'
 import { useState } from 'react';
 
@@ -19,6 +18,7 @@ export default function EmailViewer({
     const [comentarioLembrete, setComentarioLembrete] = useState('');
     const [dataLembrete, setDataLembrete] = useState('');
     const [horaLembrete, setHoraLembrete] = useState('');
+    const [lembreteCriado, setLembreteCriado] = useState(false);
 
     async function analisarComIA() {
 
@@ -75,8 +75,21 @@ export default function EmailViewer({
         });
 
         const dados = await resposta.json();
+        setLembreteCriado(dados.criado);
 
         console.log(dados);
+    }
+
+    function fecharAnalise() {
+        setEmails(emailsAnteriores => emailsAnteriores.map(emailAtual => {
+            if (emailAtual.id !== email.id) {
+                return emailAtual;
+            }
+
+            const emailSemAnalise = { ...emailAtual };
+            delete emailSemAnalise.classificacao;
+            return emailSemAnalise;
+        }));
     }
 
     if (pastaSelecionada === "Assist AI") {
@@ -183,7 +196,17 @@ export default function EmailViewer({
 
             {criandoLembrete && (
                 <div className="area-lembrete">
-                    <h3>Lembrar deste e-mail</h3>
+                    <div className="panel-header">
+                        <h3>Lembrar deste e-mail</h3>
+                        <button
+                            type="button"
+                            className="panel-close"
+                            aria-label="Fechar lembrete"
+                            title="Fechar lembrete"
+                            onClick={() => setCriandoLembrete(false)}>
+                            <i className="fa-solid fa-xmark" aria-hidden="true" />
+                        </button>
+                    </div>
 
                     <label htmlFor="data">
                         Data
@@ -215,6 +238,12 @@ export default function EmailViewer({
                         </textarea>
                     </label>
 
+                    {lembreteCriado && (
+                        <div className='lembrete-criado-warning'>
+                            <p>Lembrete criado com sucesso!</p>
+                        </div>
+                    )}
+
                     <button onClick={criarLembrete}>
                         Criar lembrete
                     </button>
@@ -229,6 +258,14 @@ export default function EmailViewer({
                             <h3>Análise da IA</h3>
                             <p>Leitura automática deste e-mail</p>
                         </div>
+                        <button
+                            type="button"
+                            className="panel-close"
+                            aria-label="Fechar análise da IA"
+                            title="Fechar análise da IA"
+                            onClick={fecharAnalise}>
+                            <i className="fa-solid fa-xmark" aria-hidden="true" />
+                        </button>
                     </div>
                     <div className='ai-analysis-grid'>
                         <p><span>Categoria</span><strong>{email.classificacao.Categoria}</strong></p>
