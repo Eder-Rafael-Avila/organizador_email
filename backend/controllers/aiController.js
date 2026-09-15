@@ -11,7 +11,6 @@ export async function assistirAi(req, res) {
     const historico = req.body.historico || [];
     const emails = req.body.emails || [];
     console.log("Quantidade de emails recebidos:", emails.length);
-    console.log(emails);
 
     const contextoEmails = emails.map(email => {
         return `
@@ -31,6 +30,8 @@ export async function assistirAi(req, res) {
 
     const resposta = await ai.chat.completions.create({
         model: "google/gemini-2.5-flash",
+        reasoning_effort: 'minimal',
+        allow_thinking: false,
         max_completion_tokens: 1000,
         messages: [
             {
@@ -110,7 +111,9 @@ export async function analisarEmail(req, res) {
 
     const resposta = await ai.chat.completions.create({
         model: "google/gemini-2.5-flash",
-        max_completion_tokens: 1000,
+        reasoning_effort: 'minimal',
+        allow_thinking: false,
+        max_completion_tokens: 200,
         messages: [
             {
                 role: "user",
