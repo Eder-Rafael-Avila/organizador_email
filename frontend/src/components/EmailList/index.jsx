@@ -7,6 +7,8 @@ export default function EmailList({
     aoSelecionarEmail,
     emails,
     todosOsEmails,
+    mensagensChat,
+    setMensagensChat,
     setEmails,
     emailSelecionado,
     aoMarcarComoLido,
@@ -16,6 +18,8 @@ export default function EmailList({
         return (
             <AssistAiSection 
                 emails={todosOsEmails}
+                mensagensChat={mensagensChat}
+                setMensagensChat={setMensagensChat}
             />
         )
     }

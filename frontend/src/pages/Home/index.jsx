@@ -14,6 +14,7 @@ export default function Home() {
   const [emailSelecionado, setEmailSelecionado] = useState(null);
   
   const [emails, setEmails] = useState([]);
+  const [mensagensChat, setMensagensChat] = useState([]);
   const [carregandoEmails, setCarregandoEmails] = useState(true);
   const [erroEmails, setErroEmails] = useState(false);
   const { search } = useLocation();
@@ -106,6 +107,8 @@ export default function Home() {
                   aoSelecionarEmail={setEmailSelecionado}
                   emails={emailsFiltrados}
                   todosOsEmails={emails}
+                  mensagensChat={mensagensChat}
+                  setMensagensChat={setMensagensChat}
                   setEmails={setEmails}
                   emailSelecionado={emailSelecionado}
                   aoMarcarComoLido={marcarComoLido}

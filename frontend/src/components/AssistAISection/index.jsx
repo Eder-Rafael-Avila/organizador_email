@@ -2,9 +2,8 @@ import './index.scss'
 
 import { useState } from 'react';
 
-export default function AssistAiSection({ emails }) {
+export default function AssistAiSection({ emails, mensagensChat, setMensagensChat }) {
 
-    const [mensagensChat, setMensagensChat] = useState([]);
     const [msgUsuario, setMsgUsuario] = useState('');
     const [respondendo, setRespondendo] = useState(false);
 
