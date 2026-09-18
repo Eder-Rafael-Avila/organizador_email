@@ -30,6 +30,9 @@ export async function assistirAi(req, res) {
 
     const resposta = await ai.chat.completions.create({
         model: "google/gemini-2.5-flash",
+        models: [
+            "openai/gpt-4o-mini"
+        ],
         reasoning_effort: 'minimal',
         allow_thinking: false,
         max_completion_tokens: 1000,
@@ -111,6 +114,9 @@ export async function analisarEmail(req, res) {
 
     const resposta = await ai.chat.completions.create({
         model: "google/gemini-2.5-flash",
+        models: [
+            "openai/gpt-4o-mini"
+        ],
         reasoning_effort: 'minimal',
         allow_thinking: false,
         max_completion_tokens: 200,
