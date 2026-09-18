@@ -20,8 +20,14 @@ export async function verificarLembretes() {
             console.log('🔔 Lembrete disparado!');
 
             try {
+                const numeroWhatsApp = lembrete.numeroWhatsApp || process.env.NUMERO_WHATSAPP;
+
+                if (!numeroWhatsApp) {
+                    throw new Error('Lembrete sem número de WhatsApp configurado.');
+                }
+
                 await enviarMensagemWhatsApp(
-                    process.env.NUMERO_WHATSAPP,
+                    numeroWhatsApp,
                     `🔔 Lembrete do Mailly:\n\n${lembrete.comentario}`
                 );
 

@@ -18,6 +18,7 @@ export default function EmailViewer({
     const [comentarioLembrete, setComentarioLembrete] = useState('');
     const [dataLembrete, setDataLembrete] = useState('');
     const [horaLembrete, setHoraLembrete] = useState('');
+    const [numeroWhatsApp, setNumeroWhatsApp] = useState('');
     const [lembreteCriado, setLembreteCriado] = useState(false);
 
     async function analisarComIA() {
@@ -57,7 +58,7 @@ export default function EmailViewer({
     }
 
     async function criarLembrete() {
-        if (!dataLembrete || !horaLembrete || !comentarioLembrete.trim()) {
+        if (!dataLembrete || !horaLembrete || !comentarioLembrete.trim() || !numeroWhatsApp.trim()) {
             return;
         }
 
@@ -70,7 +71,8 @@ export default function EmailViewer({
                 emailId: email.id,
                 comentario: comentarioLembrete,
                 data: dataLembrete,
-                hora: horaLembrete
+                hora: horaLembrete,
+                numeroWhatsApp
             })
         });
 
@@ -225,6 +227,17 @@ export default function EmailViewer({
                                id="horario"
                                value={horaLembrete}
                                onChange={(e) => setHoraLembrete(e.target.value)}
+                        />
+                    </label>
+
+                    <label htmlFor="numero-whatsapp">
+                        Telefone do WhatsApp (com código do país)
+                        <input type="tel"
+                               name="numeroWhatsapp"
+                               id="numero-whatsapp"
+                               placeholder="Ex.: +55 11 98731-5955"
+                               value={numeroWhatsApp}
+                               onChange={(e) => setNumeroWhatsApp(e.target.value)}
                         />
                     </label>
 
